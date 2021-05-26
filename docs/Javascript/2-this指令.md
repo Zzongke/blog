@@ -1,0 +1,12 @@
+# 2-this指令
+::: tip
+```html
+<ul>
+	<li>1</li>
+	<li>1</li>
+	<li>1</li>
+	<li>1</li>
+	<li>1</li>
+</ul>
+```
+:::
