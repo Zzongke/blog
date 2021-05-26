@@ -1,6 +1,7 @@
 module.exports = {
 	title: 'Zzongke',
 	description: 'Zzongke的前端',
+	base:'/blog/',
 	// 注入到当前页面的 HTML <head> 中的标签
 	head: [
 		['link', {
