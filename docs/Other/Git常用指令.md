@@ -20,6 +20,7 @@ git init
 
 ```
 git clone <项目地址>
+git clone -branch [tags标签] <项目地址>	或	git clone --b [tags标签] [项目地址]
 ```
 
 表示从远程仓库拉取项目到本地
