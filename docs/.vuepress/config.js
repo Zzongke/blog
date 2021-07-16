@@ -19,7 +19,7 @@ module.exports = {
 		lastUpdated: 'Last Updated', // 文档更新时间：每个文件git最后提交的时间
 		nav: [{
 				text: 'Javascript',
-				link: '/Javascript/1-Git常用指令'
+				link: '/Javascript/防抖和节流'
 			},
 			{
 				text: 'Vue',
@@ -43,32 +43,18 @@ module.exports = {
 			},
 		],
 		sidebar: {
-			'/Javascript/': [{
-				title: 'Javascript', // 必要的
-				// path: '', // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-				collapsable: false, // 可选的, 默认值是 true,
-				// sidebarDepth: 1,    // 可选的, 默认值是 1
-				children: [
-					'/Javascript/1-Git常用指令',
-					'/Javascript/2-this指令',
-					'/Javascript/test3',
-				]
-			}],
-			'/Vue/': [{
-				title: 'Vue',
-				children: [
-					'/Vue/Vue常见问题',
-				],
-				initialOpenGroupIndex: -1 // 可选的, 默认值是 0
-			}],
-			'/Other/': [{
-				title: 'Git常用指令',
-				collapsable: false,
-				children: [
-					'/Other/Git常用指令',
-					'/Other/Markdown'
-				],
-			}]
+			'/Javascript/': [
+				'/Javascript/防抖和节流',
+				'/Javascript/this',
+				'/Javascript/浅拷贝和深拷贝',
+			],
+			'/Vue/': [
+				'/Vue/Vue常见问题'
+			],
+			'/Other/': [
+				'/Other/Git常用指令',
+				'/Other/Markdown'
+			]
 		}
 	},
 }
