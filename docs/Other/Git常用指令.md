@@ -1,8 +1,13 @@
 ---
-sidebarDepth: 2
+title: Git常用指令
+date: 2022-03-01 15:15:00
+categories:
+  - Other
+tags:
+  - Other
 ---
 
-# Git常用指令
+# Git 常用指令
 
 ## 项目初始化
 
@@ -10,8 +15,8 @@ sidebarDepth: 2
 git init
 ```
 
-::: tip 
-项目初始化之后会生成一个.git文件，如果看不见，那就是电脑隐藏了以.开头的文件
+::: tip
+项目初始化之后会生成一个.git 文件，如果看不见，那就是电脑隐藏了以.开头的文件
 :::
 
 ## 项目关联
@@ -29,11 +34,11 @@ git clone -branch [tags标签] <项目地址>	或	git clone -b [tags标签] [项
 
 如果我们本地是有项目的，我们想要的是将本地项目和远程仓库关联起来，那么有如下两种情况
 
-- 本地已有文件与Git仓库关联起来(空仓库)
+- 本地已有文件与 Git 仓库关联起来(空仓库)
 
-```	{5}
+```{5}
 git init
-git remote add origin <项目地址> 
+git remote add origin <项目地址>
 git add .	//记得点(.)是要空格隔开
 git commit -m "<提交的信息记录>"
 git push --set-upstream origin master 或 git push -u origin master
@@ -41,7 +46,7 @@ git push --set-upstream origin master 或 git push -u origin master
 
 - 非空仓库的情况:
 
-```	{5,7}
+```{5,7}
 git init
 git remote add origin xxxx
 git add .
@@ -51,20 +56,24 @@ git pull origin master --allow-unrelated-histories
 git push --set-upstream origin master
 ```
 
-可以看出来这两种情况只有在第5步的时候才是有区别的.
+可以看出来这两种情况只有在第 5 步的时候才是有区别的.
 
-::: danger 在上面的commit到本地仓库后,如果直接推送,它会报错:
+::: danger 在上面的 commit 到本地仓库后,如果直接推送,它会报错:
+
 ```
 refusing to merge unrelated histories
 ```
+
 意思就是拒绝合并没有历史关系的分支,我们用下面的代码解决这个问题
 :::
 
 ::: tip 然后添加下面这行代码:
+
 ```
 git pull origin master --allow-unrelated-histories
 ```
-我们允许拉取没有历史关系的分支,这步也就是我们代码的第5步
+
+我们允许拉取没有历史关系的分支,这步也就是我们代码的第 5 步
 :::
 
 ## 分支操作
@@ -88,7 +97,7 @@ git checkout -b <BranchName> //创建新分支并切换到分支
 
 ### 拉去分支
 
-将远程Git仓库里的指定分支拉取到本地(本地不存在的分支)
+将远程 Git 仓库里的指定分支拉取到本地(本地不存在的分支)
 
 ```
 git checkout -b <本地分支名> <origin/远程分支名>
@@ -129,9 +138,9 @@ git commit -m "<提交的信息记录>"
 git push
 ```
 
-提交的时候,可以输入emoji表情,可爱又有趣,别人一眼看过来就知道你提交的是关于什么
+提交的时候,可以输入 emoji 表情,可爱又有趣,别人一眼看过来就知道你提交的是关于什么
 
-:bug: //修复BUG	:lipstick: //更新样式	:lock: //解决安全问题	:recycle: //重构	:sparkles: //添加新功能
+:bug: //修复 BUG :lipstick: //更新样式 :lock: //解决安全问题 :recycle: //重构 :sparkles: //添加新功能
 
 ### 提交历史
 
@@ -143,7 +152,7 @@ git log -3 //显示最近3次的更新
 ### 本地代码回滚
 
 ```
-git reset --hard commit-id //回滚到commit-id 
+git reset --hard commit-id //回滚到commit-id
 git reset --hard HEAD~3 //将最近三次的提交回滚
 git reset --hard HEAD^ //将本地代码回退到上一个版本
 ```
@@ -154,19 +163,19 @@ git reset --hard HEAD^ //将本地代码回退到上一个版本
 
 ```
 git tag //显示已有的标签
-git tag <v1.0.1> //创建一个轻量级标签 
+git tag <v1.0.1> //创建一个轻量级标签
 git tag -a <v1.0.2> -m ‘<release version>’ //创建一个带有标注的标签
 git tag -d <tag_name> //删除标签
 git push //并不会把tag标签传送到远端服务器上,只有通过显式命令才能分享标签到远端仓库
-git push origin <tag_name> //push单个tag 
-git push origin --tags //推送所有本地新增的标签 
+git push origin <tag_name> //push单个tag
+git push origin --tags //推送所有本地新增的标签
 ```
 
 ## 配置
 
-### config配置
+### config 配置
 
-最后我们来说一下config配置
+最后我们来说一下 config 配置
 
 ```
 git config --global user.name  //查看全局配置的用户名

@@ -1,23 +1,24 @@
 ---
-sidebarDepth: 2
+title: this
+date: 2022-03-01 14:55:00
+categories:
+  - Javascript
+tags:
+  - Javascript
 ---
 
-# 2-this指令
+# this 指令
+
 ::: tip
+
 ```html
 <ul>
-	<li>1</li>
-	<li>1</li>
-	<li>1</li>
-	<li>1</li>
-	<li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
 </ul>
 ```
+
 :::
-
-## 2-this指令
-
-### 2-this指令
-
-
-## 2-this指令

@@ -1,7 +1,7 @@
 module.exports = {
   theme: "reco",
   title: "Zzongke",
-  description: "Zzongke的blg",
+  description: "Zzongke的blog",
   base: "/blog/",
   // base: '/', // 这是部署到github相关的配置 下面会讲
   // 注入到当前页面的 HTML <head> 中的标签
@@ -51,19 +51,19 @@ module.exports = {
       {
         icon: "reco-github",
         text: "Javascript",
-        link: "/Javascript/防抖和节流",
+        link: "/Javascript/",
       },
       {
         text: "Vue",
-        link: "/Vue/Vue常见问题",
+        link: "/Vue/",
       },
       {
         text: "React",
         link: "https://zh-hans.reactjs.org/",
       },
       {
-        text: "其他",
-        link: "/Other/Git常用指令",
+        text: "其它",
+        link: "/Other/",
       },
       {
         text: "Nginx",
@@ -81,8 +81,13 @@ module.exports = {
         "/Javascript/this",
         "/Javascript/浅拷贝和深拷贝",
       ],
-      "/Vue/": ["/Vue/Vue常见问题"],
-      "/Other/": ["/Other/Git常用指令", "/Other/Markdown"],
+      "/Vue/": ["/Vue/Vue常见问题", "/Vue/nextTick"],
+      "/Other/": [
+        "/Other/Git常用指令",
+        "/Other/Markdown",
+        "/Other/模糊搜索关键词高亮显示",
+        "/Other/CentOS8配置Nginx",
+      ],
     },
     friendLink: [
       {
@@ -105,5 +110,7 @@ module.exports = {
     cyberSecurityLink: "公安部备案指向链接",
     // 项目开始时间，只填写年份
     startYear: "2019",
+    //代码主题
+    codeTheme: "tomorrow",
   },
 };
