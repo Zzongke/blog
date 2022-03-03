@@ -3,7 +3,7 @@ module.exports = {
   title: "Zzongke",
   description: "Zzongke的blog",
   base: "/blog/",
-  // base: '/', // 这是部署到github相关的配置 下面会讲
+  // base: '/', // 这是部署到github相关的配置
   // 注入到当前页面的 HTML <head> 中的标签
   head: [
     [
@@ -55,15 +55,16 @@ module.exports = {
       },
       {
         text: "Vue",
-        link: "/Vue/",
+        items: [
+          {
+            text: "React",
+            link: "https://zh-hans.reactjs.org/",
+          },
+        ],
       },
       {
         text: "React",
         link: "https://zh-hans.reactjs.org/",
-      },
-      {
-        text: "其它",
-        link: "/Other/",
       },
       {
         text: "Nginx",
@@ -109,7 +110,7 @@ module.exports = {
     cyberSecurityRecord: "公安部备案文案",
     cyberSecurityLink: "公安部备案指向链接",
     // 项目开始时间，只填写年份
-    startYear: "2019",
+    startYear: "2021",
     //代码主题
     codeTheme: "tomorrow",
   },
