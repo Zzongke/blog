@@ -90,6 +90,9 @@ module.exports = {
         "/Other/CentOS8配置Nginx",
         "/Other/SPA首屏加载速度",
         "/Other/HTTP和HTTPS",
+        "/Other/HTTP 常见的状态码",
+        "/Other/地址栏输入 URL 敲下回车",
+        "/Other/TCP为什么需要三次握手和四次挥手",
       ],
     },
     friendLink: [
