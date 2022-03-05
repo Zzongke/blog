@@ -1,13 +1,11 @@
 ---
-title: Markdown
+title: Markdown 语法指南
 date: 2022-03-01 14:55:00
 categories:
   - Other
 tags:
   - Other
 ---
-
-# Markdown 语法指南
 
 > Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档
 

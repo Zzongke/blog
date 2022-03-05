@@ -88,6 +88,8 @@ module.exports = {
         "/Other/Markdown",
         "/Other/模糊搜索关键词高亮显示",
         "/Other/CentOS8配置Nginx",
+        "/Other/SPA首屏加载速度",
+        "/Other/HTTP和HTTPS",
       ],
     },
     friendLink: [

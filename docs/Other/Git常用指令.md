@@ -7,9 +7,9 @@ tags:
   - Other
 ---
 
-# Git 常用指令
-
 ## 项目初始化
+
+---
 
 ```
 git init
@@ -21,7 +21,11 @@ git init
 
 ## 项目关联
 
+---
+
 ### 克隆项目
+
+---
 
 ```
 git clone <项目地址>
@@ -31,6 +35,8 @@ git clone -branch [tags标签] <项目地址>	或	git clone -b [tags标签] [项
 表示从远程仓库拉取项目到本地
 
 ### 本地项目关联远程仓库
+
+---
 
 如果我们本地是有项目的，我们想要的是将本地项目和远程仓库关联起来，那么有如下两种情况
 
@@ -78,7 +84,11 @@ git pull origin master --allow-unrelated-histories
 
 ## 分支操作
 
+---
+
 ### 查看分支
+
+---
 
 ```
 git branch //查看本地分支
@@ -89,6 +99,8 @@ git branch -v //分支最后一次提交的信息
 
 ### 切换分支
 
+---
+
 ```
 git branch <BranchName> //创建新分支
 git checkout <BranchName> //切换分支
@@ -96,6 +108,8 @@ git checkout -b <BranchName> //创建新分支并切换到分支
 ```
 
 ### 拉去分支
+
+---
 
 将远程 Git 仓库里的指定分支拉取到本地(本地不存在的分支)
 
@@ -105,6 +119,8 @@ git checkout -b <本地分支名> <origin/远程分支名>
 
 ### 删除分支
 
+---
+
 ```
 git branch -d <BranchName> //删除本地分支
 git push origin :<BranchName> //删除远程分支
@@ -112,12 +128,16 @@ git push origin :<BranchName> //删除远程分支
 
 ### 创建本地新分支并推送到远程
 
+---
+
 ```
 git branch -b <BranchName> //创建本地新分支并切换到新分支
 git push --set-upstream origin <BranchName>
 ```
 
 ### 暂存
+
+---
 
 ::: tip 不想提交当前代码到远程仓库
 有时候,我们想要切换分支,但是又不想将当前分支代码提交到本地或远程仓库,直接切换过去的话代码会被覆盖,这时候我们可以使用暂存功能
@@ -130,7 +150,11 @@ git stash pop //取出暂存
 
 ## 提交操作
 
+---
+
 ### 代码提交
+
+---
 
 ```
 git add .
@@ -144,12 +168,16 @@ git push
 
 ### 提交历史
 
+---
+
 ```
 git log
 git log -3 //显示最近3次的更新
 ```
 
 ### 本地代码回滚
+
+---
 
 ```
 git reset --hard commit-id //回滚到commit-id
@@ -158,6 +186,8 @@ git reset --hard HEAD^ //将本地代码回退到上一个版本
 ```
 
 ### 标签功能
+
+---
 
 有时候,我们的项目上线了,我们就需要标签功能,记录我们的版本
 
@@ -173,7 +203,11 @@ git push origin --tags //推送所有本地新增的标签
 
 ## 配置
 
+---
+
 ### config 配置
+
+---
 
 最后我们来说一下 config 配置
 
