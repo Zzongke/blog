@@ -1,7 +1,9 @@
 module.exports = {
   theme: "reco",
   title: "Zzongke",
-  description: "Zzongke的blog",
+  keywords: "前端开发",
+  description: "zzk的Blog",
+  repo: "https://github.com/zzongke/blog.git",
   base: "/blog/",
   // base: '/', // 这是部署到github相关的配置
   // 注入到当前页面的 HTML <head> 中的标签
@@ -21,6 +23,13 @@ module.exports = {
         content: "width=device-width,initial-scale=1,user-scalable=no",
       },
     ],
+    [
+      "meta",
+      {
+        name: "description",
+        content: "zzongke的Blog,zZongke的Blog,Zzongke的Blog",
+      },
+    ],
   ],
   markdown: {
     lineNumbers: true, // 代码块显示行号
@@ -29,6 +38,7 @@ module.exports = {
     type: "blog",
     author: "Zzongke",
     authorAvatar: "/logo.jpg",
+    title: "Normal No More",
     lastUpdated: "Last Updated", // 文档更新时间：每个文件git最后提交的时间
     blogConfig: {
       category: {
@@ -79,10 +89,10 @@ module.exports = {
     sidebar: {
       "/Javascript/": [
         "/Javascript/防抖和节流",
-        "/Javascript/this",
+        "/Javascript/上拉加载下拉刷新",
         "/Javascript/浅拷贝和深拷贝",
       ],
-      "/Vue/": ["/Vue/Vue常见问题", "/Vue/nextTick"],
+      "/Vue/": ["/Vue/Vue常见问题", "/Vue/nextTick", "30 道 Vue 面试题"],
       "/Other/": [
         "/Other/Git常用指令",
         "/Other/Markdown",
@@ -93,6 +103,7 @@ module.exports = {
         "/Other/HTTP 常见的状态码",
         "/Other/地址栏输入 URL 敲下回车",
         "/Other/TCP为什么需要三次握手和四次挥手",
+        "/Other/Ajax原理和实现",
       ],
     },
     friendLink: [
@@ -109,6 +120,7 @@ module.exports = {
         link: "https://www.recoluan.com",
       },
     ],
+    noFoundPageByTencent: false,
     // 备案
     record: "ICP 备案文案",
     recordLink: "ICP 备案指向链接",

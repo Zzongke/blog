@@ -1,7 +1,8 @@
 ---
 home: true
 heroImage: ./logo.jpg
-heroText: null
+heroText: Normal No More！
+tagline: zzk的Blog
 heroImageStyle:
   {
     width: "200px",

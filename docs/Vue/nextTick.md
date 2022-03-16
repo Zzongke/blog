@@ -7,8 +7,6 @@ tags:
   - vue
 ---
 
-# Vue nextTick 源码解析
-
 `nextTick` 支持两种形式使用方式：
 
 1. 回调函数形式。
@@ -91,7 +89,7 @@ function flushCallbacks () {
 nextTick(()=>{
   console.log("nextTick callback")
 })
-nextTick(()=>{
+nextTick().then(()=>{
   console.log("nextTick Promise")
 })
 ```
