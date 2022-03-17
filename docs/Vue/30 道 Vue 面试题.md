@@ -663,3 +663,62 @@ export function set(target: Array<any> | Object, key: any, val: any): any {
 - 用 JavaScript 对象模拟真实 DOM 树，对真实 DOM 进行抽象；
 - diff 算法 — 比较两棵虚拟 DOM 树的差异；
 - pach 算法 — 将两个虚拟 DOM 对象的差异应用到真正的 DOM 树。
+
+## 27、Vue 中的 key 有什么作用？
+
+---
+
+key 是为 Vue 中 vnode 的唯一标记，通过这个 key，我们的 diff 操作可以更准确、更快速。Vue 的 diff 过程可以概括为：oldCh 和 newCh 各有两个头尾的变量 oldStartIndex、oldEndIndex 和 newStartIndex、newEndIndex，它们会新节点和旧节点会进行两两对比，即一共有 4 种比较方式：newStartIndex 和 oldStartIndex 、newEndIndex 和 oldEndIndex 、newStartIndex 和 oldEndIndex 、newEndIndex 和 oldStartIndex，如果以上 4 种比较都没匹配，如果设置了 key，就会用 key 再进行比较，在比较的过程中，遍历会往中间靠，一旦 StartIdx > EndIdx 表明 oldCh 和 newCh 至少有一个已经遍历完了，就会结束比较。具体有无 key 的 diff 过程，可以查看作者写的另一篇详解虚拟 DOM 的文章《深入剖析：Vue 核心之虚拟 DOM》
+
+所以 Vue 中 key 的作用是：key 是为 Vue 中 vnode 的唯一标记，通过这个 key，我们的 diff 操作可以更准确、更快速
+
+<b>更准确：</b>因为带 key 就不是就地复用了，在 sameNode 函数 a.key === b.key 对比中可以避免就地复用的情况。所以会更加准确。
+
+<b>更快速：</b>利用 key 的唯一性生成 map 对象来获取对应节点，比遍历方式更快，源码如下：
+
+```js
+function createKeyToOldIdx(children, beginIdx, endIdx) {
+  let i, key;
+  const map = {};
+  for (i = beginIdx; i <= endIdx; ++i) {
+    key = children[i].key;
+    if (isDef(key)) map[key] = i;
+  }
+  return map;
+}
+```
+
+## 28、你有对 Vue 项目进行哪些优化？
+
+---
+
+### （1）代码层面的优化
+
+- v-if 和 v-show 区分使用场景
+- computed 和 watch 区分使用场景
+- v-for 遍历必须为 item 添加 key，且避免同时使用 v-if
+- 长列表性能优化
+- 事件的销毁
+- 图片资源懒加载
+- 路由懒加载
+- 第三方插件的按需引入
+- 优化无限列表性能
+- 服务端渲染 SSR or 预渲染
+
+### （2）Webpack 层面的优化
+
+- Webpack 对图片进行压缩
+- 减少 ES6 转为 ES5 的冗余代码
+- 提取公共代码
+- 模板预编译
+- 提取组件的 CSS
+- 优化 SourceMap
+- 构建结果输出分析
+- Vue 项目的编译优化
+
+### （3）基础的 Web 技术的优化
+
+- 开启 gzip 压缩
+- 浏览器缓存
+- CDN 的使用
+- 使用 Chrome Performance 查找性能瓶颈
