@@ -765,3 +765,72 @@ vue3.0 的改变是全面的，上面只涉及到主要的 3 个方面，还有�
 - 支持自定义渲染器，从而使得 weex 可以通过自定义渲染器的方式来扩展，而不是直接 fork 源码来改的方式。
 - 支持 Fragment（多个根节点）和 Protal（在 dom 其他部分渲染组建内容）组件，针对一些特殊的场景做了处理。
 - 基于 treeshaking 优化，提供了更多的内置功能。
+
+## 30、手写 Promise.all 和 Promise.race
+
+---
+
+### Promise.all()
+
+<b>核心思路：</b>
+
+1、Promise.all 返回的肯定是一个 Promise 对象，所以可以直接写一个 return new Promise((resolve,reject)=>{})(这应该是一个惯性思维)
+2、遍历传入的参数，用 Promise.resolve()将参数“包一层”，使其变成个 Promise 对象
+3、关键点是何时“决议”，也就是合适 resolve 出来，在这里做了计数器(count)，每个内部 Promise 对象决议后就将计数器加一，并判断加一后的大小是否与传入对象的数量相等，如果相等则调用 resolve，如果任何一个 promise 对象失败，则调用 reject()方法。
+4、官网规定 Promise.all()接受的参数是一个可遍历的参数，所以未必一定是一个数组，所以用 Array.from()转化一下
+5、使用 for...of 进行遍历，因为凡事可遍历的变量应该都是部署了 iterator 方法，所以用 for...of 遍历最安全
+
+```js
+Promise.all = function (iterater) {
+  let count = 0;
+  let len = iterater.length;
+  let res = [];
+  return new Promise((resolve, reject) => {
+    for (item of iterater) {
+      Promise.resolve(iterater[item])
+        .then((data) => {
+          res[item] = data;
+          if (++count === len) {
+            resolve(res);
+          }
+        })
+        .catch((err) => reject(err));
+    }
+  });
+};
+const promise1 = Promise.resolve(3);
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "foo");
+});
+const promise3 = 42;
+Promise.all([promise1, promise2, promise3]).then((values) =>
+  console.log(values)
+);
+```
+
+### Promise.race()
+
+<b>核心思路：</b>
+谁先决议那么就返回谁，所以将 all 的计数器和逻辑判断全部去除掉就可以了。
+
+```js
+romise.race = function (iterater) {
+  return new Promise((resolve, reject) => {
+    for (item of iterater) {
+      Promise.resolve(iterater[item])
+        .then((data) => {
+          resolve(res);
+        })
+        .catch((err) => reject(err));
+    }
+  });
+};
+const promise1 = Promise.resolve(3);
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "foo");
+});
+const promise3 = 42;
+Promise.race([promise1, promise2, promise3]).then((values) =>
+  console.log(values)
+);
+```
