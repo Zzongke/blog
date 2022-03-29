@@ -61,7 +61,7 @@ module.exports = {
       {
         icon: "reco-github",
         text: "JavaScript",
-        link: "/JavaScript/",
+        link: "/javascript/",
       },
       {
         text: "Vue",
@@ -87,11 +87,11 @@ module.exports = {
     ],
     subSidebar: "auto",
     sidebar: {
-      "/JavaScript/": [
-        "/JavaScript/防抖和节流",
-        "/JavaScript/上拉加载下拉刷新",
-        "/JavaScript/浅拷贝和深拷贝",
-        "/JavaScript/JavaScript数组的常用方法有哪些",
+      "/javascript/": [
+        "/javascript/防抖和节流",
+        "/javascript/上拉加载下拉刷新",
+        "/javascript/浅拷贝和深拷贝",
+        "/javascript/JavaScript数组的常用方法有哪些",
       ],
       "/Vue/": ["/Vue/Vue常见问题", "/Vue/nextTick", "30 道 Vue 面试题"],
       "/Other/": [
