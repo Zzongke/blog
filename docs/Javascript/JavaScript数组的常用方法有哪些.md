@@ -226,7 +226,7 @@ alert(values); // 0,1,5,10,15
 
 <b>join()</b>
 
-join() 方法接收一个参数，即字符串分隔符，返回包含所有项的字符
+join() 方法接收一个参数，即字符串分隔符，返回包含所有项的字符串
 
 ```js
 const colors = ["red", "green", "blue"];
