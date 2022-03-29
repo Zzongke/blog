@@ -60,8 +60,8 @@ module.exports = {
       { text: "TimeLine", link: "/timeline/", icon: "reco-date" },
       {
         icon: "reco-github",
-        text: "Javascript",
-        link: "/Javascript/",
+        text: "JavaScript",
+        link: "/JavaScript/",
       },
       {
         text: "Vue",
@@ -87,10 +87,11 @@ module.exports = {
     ],
     subSidebar: "auto",
     sidebar: {
-      "/Javascript/": [
-        "/Javascript/防抖和节流",
-        "/Javascript/上拉加载下拉刷新",
-        "/Javascript/浅拷贝和深拷贝",
+      "/JavaScript/": [
+        "/JavaScript/防抖和节流",
+        "/JavaScript/上拉加载下拉刷新",
+        "/JavaScript/浅拷贝和深拷贝",
+        "/JavaScript/JavaScript数组的常用方法有哪些",
       ],
       "/Vue/": ["/Vue/Vue常见问题", "/Vue/nextTick", "30 道 Vue 面试题"],
       "/Other/": [
