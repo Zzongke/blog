@@ -92,6 +92,7 @@ module.exports = {
         "/javascript/上拉加载下拉刷新",
         "/javascript/浅拷贝和深拷贝",
         "/javascript/JavaScript数组的常用方法有哪些",
+        "/javascript/this指向",
       ],
       "/Vue/": ["/Vue/Vue常见问题", "/Vue/nextTick", "30 道 Vue 面试题"],
       "/Other/": [
