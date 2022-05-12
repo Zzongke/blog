@@ -75,25 +75,9 @@ tags:
     <div id="container"></div>
     <script>
       const container = document.querySelector("#container");
-      let x;
-      // container.onmousemove = (e)=>{
-      // 	const {width} = container.getBoundingClientRect()
-      // 	x = width - 20;
-      // 	if(e.offsetX <=0){
-      // 		return
-      // 	}
-      // 	if(e.offsetX > x){
-      // 		return
-      // 	}
-      // 	let per = Math.floor((e.offsetX / x)* 100);
-      // 	console.log(per,x * per)
-      // 	container.style.backgroundPosition=(x * per) + 'px'+ ' ' + (x * per) + 'px';
-      // }
-
       window.onload = function() {
         // 鼠标移动到指定box上时，触发事件
         //获取指定div元素
-        // var boxClass = document.getElementsByClassName("image")[0];
         container.onmousemove = function(event) {
           console.log("事件触发!");
           // 获取盒子的位置
