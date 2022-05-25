@@ -335,3 +335,97 @@ console.log(baz.a); // 3
 我们可认为`new绑定优先级`>`显式绑定`
 
 综上，new 绑定优先级 > 显示绑定优先级 > 隐式绑定优先级 > 默认绑定优先级
+
+## 五、apply、call、bind 实现
+
+- apply
+
+```js
+Function.prototype.myApply = function(context) {
+  if (typeof this !== "function") {
+    throw new Error("Type error");
+  }
+  let result = null;
+  context = context || window;
+  // 与上面代码相比，我们使用 Symbol 来保证属性唯一
+  // 也就是保证不会重写用户自己原来定义在 context 中的同名属性
+  const fnSymbol = Symbol();
+  context[fnSymbol] = this;
+  // 执行要被调用的方法
+  if (arguments[1]) {
+    result = context[fnSymbol](...arguments[1]);
+  } else {
+    result = context[fnSymbol]();
+  }
+  delete context[fnSymbol];
+  return result;
+};
+```
+
+- call
+
+```js
+Function.prototype.myCall = function(context) {
+  // 判断调用对象
+  if (typeof this !== "function") {
+    throw new Error("Type error");
+  }
+  // 首先获取参数
+  let args = [...arguments].slice(1);
+  let result = null;
+  // 判断 context 是否传入，如果没有传就设置为 window
+  context = context || window;
+  // 将被调用的方法设置为 context 的属性
+  // this 即为我们要调用的方法
+  context.fn = this;
+  // 执行要被调用的方法
+  result = context.fn(...args);
+  // 删除手动增加的属性方法
+  delete context.fn;
+  // 将执行结果返回
+  return result;
+};
+```
+
+- bind
+
+```js
+Function.prototype.myBind = function (context) {
+  // 判断调用对象是否为函数
+  if (typeof this !== "function") {
+    throw new Error("Type error");
+  }
+  // 获取参数
+  const args = [...arguments].slice(1),
+  const fn = this;
+  return function Fn() {
+    return fn.apply(
+      this instanceof Fn ? this : context,
+      // 当前的这个 arguments 是指 Fn 的参数
+      args.concat(...arguments)
+    );
+  };
+};
+```
+
+## 6、new 实现
+
+1. 首先创一个新的空对象。
+
+2. 根据原型链，设置空对象的 `__proto__` 为构造函数的 `prototype` 。
+
+3. 构造函数的 this 指向这个对象，执行构造函数的代码（为这个新对象添加属性）。
+
+4. 判断函数的返回值类型，如果是引用类型，就返回这个引用类型的对象。
+
+```js
+function myNew(Fn, ...args) {
+  //1.创建一个空对象，并将对象的__proto__指向构造函数的prototype 这里我两步一起做了
+  const obj = Object.create(Fn.prototype);
+  //2.将构造函数中的this指向obj，执行构造函数代码,获取返回值
+  const res = Fn.apply(obj, args);
+  console.log(res instanceof Object);
+  //3.判断返回值类型
+  return res instanceof Object ? res : obj;
+}
+```

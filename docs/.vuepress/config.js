@@ -88,11 +88,13 @@ module.exports = {
     subSidebar: "auto",
     sidebar: {
       "/javascript/": [
+        "/javascript/数据类型的判断",
         "/javascript/防抖和节流",
         "/javascript/上拉加载下拉刷新",
         "/javascript/浅拷贝和深拷贝",
         "/javascript/JavaScript数组的常用方法有哪些",
         "/javascript/this指向",
+        "/javascript/event loop、宏任务和微任务",
       ],
       "/Vue/": ["/Vue/Vue常见问题", "/Vue/nextTick", "30 道 Vue 面试题"],
       "/Other/": [
