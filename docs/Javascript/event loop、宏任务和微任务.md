@@ -61,14 +61,113 @@ Web APIs 会创建对应的线程，比如 setTimeout 会创建定时器线程�
 
 关于这一块儿没什么好说的，最好是实现一遍 Promise A+ 规范，多少有点印象，当然面试官也不会叫你默写一个完整的出来，但是你起码要知道实现原理。
 
-> 关于 Promise 的所有使用方式，可参照这篇文章：ECMAScript 6 入门 - Promise 对象。
-> 手写 Promise 源码的解析文章，可阅读此篇文章：从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节。
-> 关于 Promise 的面试题，可参考这篇文章：要就来 45 道 Promise 面试题一次爽到底。
+> 关于 Promise 的所有使用方式，可参照这篇文章：`ECMAScript 6 入门 - Promise 对象`。
+> 手写 Promise 源码的解析文章，可阅读此篇文章：`从一道让我失眠的 Promise 面试题开始，深入分析 Promise 实现细节`。
+> 关于 Promise 的面试题，可参考这篇文章：`要就来 45 道 Promise 面试题一次爽到底`。
+
+手写 Promise
+
+```js
+class MyPromise {
+  static pending = "pending";
+  static fulfilled = "fulfilled";
+  static rejected = "rejected";
+  constructor(executor) {
+    if (!this._isFunction(executor)) {
+      throw new Error(`${executor} is not a function`);
+    }
+    this._status = MyPromise.pending;
+    this._state = undefined;
+    this._handleFulfilled = [];
+    this._handleRejected = [];
+    executor(this.resolve.bind(this), this.reject.bind(this));
+  }
+  _isFunction(val) {
+    return Object.prototype.toString.call(val) === "[object Function]";
+  }
+  resolve(val) {
+    if (this._status === MyPromise.pending) {
+      this._status = MyPromise.fulfilled;
+      this._state = val;
+      let cb;
+      // 异步按顺序调用并清空回调
+      setTimeout(() => {
+        while ((cb = this._handleFulfilled.shift())) {
+          cb(val);
+        }
+      }, 0);
+    }
+  }
+  reject(val) {
+    if (this._status === MyPromise.pending) {
+      this._status = MyPromise.rejected;
+      this._state = val;
+      let cb;
+      // 异步按顺序调用并清空回调
+      setTimeout(() => {
+        while ((cb = this._handleRejected.shift())) {
+          cb(val);
+        }
+      }, 0);
+    }
+  }
+  then(onFulfilled, onRejected) {
+    let self = this;
+    const { _state, _status } = this;
+    // 如果onFulfilled、onRejected不是函数，强制改为函数，并且该函数直接返回接收到的参数，传后面的then的回调函数
+    onFulfilled = self._isFunction(onFulfilled) ? onFulfilled : (v) => v;
+    onRejected = self._isFunction(onRejected) ? onRejected : (v) => v;
+    return new MyPromise((resolve, reject) => {
+      const fulfilled = (val) => {
+        let res = onFulfilled(val);
+        if (res instanceof MyPromise) {
+          res.then(resolve, reject);
+        } else {
+          resolve(res);
+        }
+      };
+      const rejected = (value) => {
+        const res = onRejected(value);
+        if (res instanceof MyPromise) {
+          // 这里是重点
+          res.then(resolve, reject);
+        } else {
+          // 注意这里是resolve(res)，而不是reject(res)
+          resolve(res);
+        }
+      };
+      switch (_status) {
+        case MyPromise.pending:
+          this._handleFulfilled.push(fulfilled);
+          self._handleRejected.push(rejected);
+          break;
+        case MyPromise.fulfilled:
+          resolve(_state);
+          break;
+        case "rejected":
+          rejected(_value);
+          break;
+        default:
+          throw new Error("Promise resolver Unverified status");
+      }
+    });
+  }
+}
+
+new MyPromise((resolve) => {
+  console.log(1);
+  setTimeout(() => {
+    resolve(2);
+  }, 3000);
+}).then((res) => {
+  console.log(res);
+});
+```
 
 实现一个 Promise.all：
 
 ```js
-Promise.all = function(promises) {
+Promise.all = function (promises) {
   return new Promise((resolve, reject) => {
     // 参数可以不是数组，但必须具有 Iterator 接口
     if (typeof promises[Symbol.iterator] !== "function") {
