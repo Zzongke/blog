@@ -138,13 +138,13 @@ class MyPromise {
       };
       switch (_status) {
         case MyPromise.pending:
-          this._handleFulfilled.push(fulfilled);
+          self._handleFulfilled.push(fulfilled);
           self._handleRejected.push(rejected);
           break;
         case MyPromise.fulfilled:
           resolve(_state);
           break;
-        case "rejected":
+        case MyPromise.rejected:
           rejected(_value);
           break;
         default:
