@@ -109,6 +109,7 @@ module.exports = {
         "/Other/TCP为什么需要三次握手和四次挥手",
         "/Other/Ajax原理和实现",
         "/Other/video鼠标移动预览",
+        "/Other/SEO优化重要的元标签",
       ],
     },
     friendLink: [
